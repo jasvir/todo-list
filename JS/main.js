@@ -24,6 +24,7 @@ savedTheme === null
 
 // Functions;
 function addToDo(event) {
+  console.log('addToDo');
   event.preventDefault();
   const todoText = toDoInput.value.trim();
   if (todoText === "") {
@@ -36,6 +37,7 @@ function addToDo(event) {
   toDoInput.value = "";
 }
 function savelocal(todoObj) {
+  console.log('savelocal');
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
@@ -46,6 +48,7 @@ function savelocal(todoObj) {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 function getTodos() {
+  console.log('getTodos');
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
