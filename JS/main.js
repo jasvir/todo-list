@@ -1,3 +1,7 @@
+var __pico_express_browser_enabled__ = function (sourceOid, unitId) {
+  var runtime = globalThis[Symbol.for("pico.express.browser.runtime.v1")];
+  return runtime ? runtime.enabled(sourceOid, unitId) : false;
+};
 // Selectors
 
 const toDoInput = document.querySelector(".todo-input");
@@ -37,6 +41,17 @@ function addToDo(event) {
   toDoInput.value = "";
 }
 function savelocal(todoObj) {
+if (__pico_express_browser_enabled__("sha1:f448e0817bf55203b49cc60a95f48835a2cb634b", "js:function-body:f727c8d5570dea8a20ee")) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todoObj);
+  localStorage.setItem("todos", JSON.stringify(todos));
+} else {
+  console.log('savelocal');
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
@@ -46,7 +61,9 @@ function savelocal(todoObj) {
   todos.push(todoObj);
   localStorage.setItem("todos", JSON.stringify(todos));
 }
+}
 function getTodos() {
+if (__pico_express_browser_enabled__("sha1:f448e0817bf55203b49cc60a95f48835a2cb634b", "js:function-body:9783088f7facd639fc29")) {
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
@@ -56,6 +73,18 @@ function getTodos() {
   todos.forEach((todo) => {
     renderToDo(todo);
   });
+} else {
+  console.log('getTodos');
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.forEach((todo) => {
+    renderToDo(todo);
+  });
+}
 }
 function renderToDo(todo) {
   const toDoDiv = document.createElement("div");
